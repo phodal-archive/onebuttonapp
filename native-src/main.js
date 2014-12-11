@@ -3,7 +3,7 @@ define([
     'js/Checker'
 ], function(_, Checker) {
     var DEFAULT_CONFIG = {
-        'url_pattern' : '(immobiliare)*',
+        'url_pattern' : '(immobiliare)',
         'local_pattern': 'imm_area'
     };
 

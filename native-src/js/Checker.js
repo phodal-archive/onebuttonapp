@@ -10,7 +10,12 @@ var factory = function(
 		},
 
 		checkForValidUrl: function(url, CONFIG) {
-			return url.match(new RegExp(CONFIG['url_pattern']));
+			var match = url.match(new RegExp(CONFIG['url_pattern']));
+			if(typeof match != "undefined" && null != match) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 	});
 	return new Checker();
