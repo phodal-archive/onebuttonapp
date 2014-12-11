@@ -1,7 +1,8 @@
 define([
     'underscore',
-    'js/Checker'
-], function(_, Checker) {
+    'js/Checker',
+    'URIjs/URI'
+], function(_, Checker, URI) {
     var DEFAULT_CONFIG = {
         'url_pattern' : '(immobiliare)',
         'local_pattern': 'imm_area'
