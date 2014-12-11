@@ -13,9 +13,12 @@
     "background",
     "clipboardWrite"
   ],
-  "page_action": {
-    "default_icon": "images/icons/icon_16.png",
-    "default_title": "Helper",
+  "browser_action": {
+    "default_icon": {
+      "16": "images/icons/icon_16.png",
+      "48": "images/icons/icon_48.png"
+    },
+    "default_title": "LBS",
     "default_popup": "popup.html"
   },
   "background": {
