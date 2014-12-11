@@ -16,7 +16,7 @@ define([
         console.log(result);
         $("#popup p").append(result);
         if(Checker.checkForValidUrl(tab.url, DEFAULT_CONFIG)){
-            chrome.pageAction.show(tabId);
+            console.log("check url");
         }
     };
 

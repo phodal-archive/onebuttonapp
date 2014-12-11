@@ -13,6 +13,11 @@
     "background",
     "clipboardWrite"
   ],
+  "content_scripts": [ {
+    "js": [ "native-src/js/loader.js" ],
+    "matches": [ "http://*/*", "https://*/*" ],
+    "run_at": "document_end"
+  } ],
   "browser_action": {
     "default_icon": {
       "16": "images/icons/icon_16.png",
