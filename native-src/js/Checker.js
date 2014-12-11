@@ -1,11 +1,6 @@
 var factory = function(
 	_
 ) {
-	var DEFAULT_CONFIG = {
-		'url_pattern' : '(immobiliare)*',
-		'local_pattern': 'imm_area'
-	};
-
 	var Checker = function () {
 		this.initialize.apply(this, arguments);
 	};
@@ -14,10 +9,8 @@ var factory = function(
 		initialize: function() {
 		},
 
-		checkForValidUrl: function(tabId, changeInfo, tab) {
-			if (tab.url.match(new RegExp(DEFAULT_CONFIG['url_pattern']))) {
-				chrome.pageAction.show(tabId);
-			}
+		checkForValidUrl: function(url, CONFIG) {
+			return url.match(new RegExp(CONFIG['url_pattern']));
 		}
 	});
 	return new Checker();
