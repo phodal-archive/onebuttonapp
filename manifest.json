@@ -9,7 +9,11 @@
     "128": "images/icons/icon_128.png"
   },
   "permissions" : [
+    "storage",
+    "http://*/*",
+    "https://*/*",
     "tabs",
+    "webRequest",
     "background",
     "clipboardWrite"
   ],

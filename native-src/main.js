@@ -18,6 +18,15 @@ define([
         if(Checker.checkForValidUrl(tab.url, DEFAULT_CONFIG)){
             console.log("check url");
         }
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", '', true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+                $("#popup").html(xhr.responseText);
+                console.log(xhr.responseText);
+            }
+        };
+        xhr.send();
     };
 
     chrome.tabs.onUpdated.addListener(check);
