@@ -15,7 +15,7 @@
   ],
   "content_scripts": [ {
     "js": ["native-src/lib/zepto.min.js", "native-src/js/loader.js" ],
-    "matches": [ "http://*/*", "https://*/*" ],
+    "matches": [ "http://*.localhost:*/*", "https://*.localhost:*/*" ],
     "run_at": "document_start"
   } ],
   "browser_action": {
