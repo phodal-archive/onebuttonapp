@@ -30,12 +30,6 @@ var factory = function(
 	XHRClient.prototype.initialize = function() {
 	};
 
-	function is_url(url, config) {
-		if (!url || typeof url !== "string") {
-			config['error'](new Error("URL is an invalid type"));
-		}
-	}
-
 	XHRClient.prototype.request = function(url, config) {
 		var request = new XMLHttpRequest();
 
