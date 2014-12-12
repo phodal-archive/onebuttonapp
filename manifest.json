@@ -16,7 +16,7 @@
   "content_scripts": [ {
     "js": ["native-src/lib/zepto.min.js", "native-src/js/loader.js" ],
     "matches": [ "http://*/*", "https://*/*" ],
-    "run_at": "document_end"
+    "run_at": "document_start"
   } ],
   "browser_action": {
     "default_icon": {
