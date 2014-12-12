@@ -7,12 +7,12 @@ define([
 ],function($, Backbone, _, Mustache, indexTemplate){
 
 	var HomePageView = Backbone.View.extend ({
+		el: $('#content'),
 
 		initialize: function(){
-			var view = this, rendered;
-
-			rendered = Mustache.to_html(indexTemplate, {hello: "draw"});
-			$(view.el).html(rendered);
+			var rendered = Mustache.to_html(indexTemplate, {hello: "draw"});
+			console.log("zero");
+			this.$el.html(rendered);
 		}
 	});
 

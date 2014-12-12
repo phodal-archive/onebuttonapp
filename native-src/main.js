@@ -5,8 +5,10 @@ define([
     'js/Parser',
     'jquery',
     'js/xhr-client',
-    'Views/HomePageView'
-], function(_, Checker, URI, Parser, $, XHRClient, HomePageView) {
+    'app'
+], function(_, Checker, URI, Parser, $, XHRClient, App) {
+    App.initialize();
+
     var DEFAULT_CONFIG = {
         'url_pattern' : '(localhost)'
     };
@@ -18,7 +20,6 @@ define([
             var url = "http://localhost:10000/manifest.json";
             xhrClient.request(url, result);
             console.log(result);
-            var homePageView = new HomePageView();
         }
     };
 
