@@ -1,11 +1,12 @@
 define([
-    'underscore',
+    'lib/underscore',
     'js/Checker',
     'URIjs/URI',
     'js/Parser',
-    'zepto',
-    'js/xhr-client'
-], function(_, Checker, URI, Parser, $, XHRClient) {
+    'jquery',
+    'js/xhr-client',
+    'Views/HomePageView'
+], function(_, Checker, URI, Parser, $, XHRClient, HomePageView) {
     var DEFAULT_CONFIG = {
         'url_pattern' : '(localhost)'
     };
@@ -17,6 +18,7 @@ define([
             var url = "http://localhost:10000/manifest.json";
             xhrClient.request(url, result);
             console.log(result);
+            var homePageView = new HomePageView();
         }
     };
 

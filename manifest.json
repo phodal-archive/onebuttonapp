@@ -18,7 +18,7 @@
     "clipboardWrite"
   ],
   "content_scripts": [ {
-    "js": ["native-src/lib/zepto.min.js", "native-src/js/loader.js" ],
+    "js": ["native-src/lib/jquery.min.js", "native-src/js/loader.js" ],
     "matches": [ "http://*.localhost:*/*", "https://*.localhost:*/*" ],
     "run_at": "document_start"
   } ],
