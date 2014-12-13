@@ -9,3 +9,4 @@
 out/
 .idea_modules/
 configure.json
+test/

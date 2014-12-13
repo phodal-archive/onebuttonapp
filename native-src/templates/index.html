@@ -1,2 +1,11 @@
-{{name}}
-
+{{totalResultsCount}}
+{{#tieredResults}}
+<!--{{results}}-->
+    {{#.}}
+        {{#results}}
+            <div id="listing">
+                <img src="{{mainImage.server}}/120x120/{{mainImage.uri}}" />
+            </div>
+        {{/results}}
+    {{/.}}
+{{/tieredResults}}

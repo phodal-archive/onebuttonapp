@@ -16,13 +16,14 @@ define([
 
 		getResponse: function () {
 			var xhr = new XMLHttpRequest();
-			xhr.open('GET', CONFIG["base_url"], false);
+			xhr.open('GET', CONFIG["base_url"] + CONFIG["query"], false);
 			xhr.send(null);
 			return JSON.parse(xhr.responseText);
 		},
 
 		render:function() {
 			var result = this.getResponse();
+			var count = result.totalResultsCount
 			var rendered = Mustache.to_html(indexTemplate, result);
 			this.$el.html(rendered);
 		}
