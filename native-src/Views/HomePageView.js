@@ -3,8 +3,9 @@ define([
 	'backbone',
 	'underscore',
 	'mustache',
-	'text!/native-src/templates/index.html'
-],function($, Backbone, _, Mustache, indexTemplate){
+	'text!/native-src/templates/index.html',
+	'json!/configure.json'
+],function($, Backbone, _, Mustache, indexTemplate, CONFIG){
 
 	var HomePageView = Backbone.View.extend ({
 		el: $('#content'),
@@ -15,7 +16,7 @@ define([
 
 		getResponse: function () {
 			var xhr = new XMLHttpRequest();
-			xhr.open('GET', "http://localhost:10000/manifest.json", false);
+			xhr.open('GET', CONFIG["base_url"], false);
 			xhr.send(null);
 			return JSON.parse(xhr.responseText);
 		},
