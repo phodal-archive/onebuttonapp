@@ -2,7 +2,7 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'native-src/Views/HomePageView.js'
+	"native-src/Views/HomePageView.js"
 ], function($, _, Backbone, HomePageView) {
 
 	var AppRouter = Backbone.Router.extend({
@@ -16,7 +16,6 @@ define([
 
 		app_router.on('route:homePage', function() {
 			var homeView = new HomePageView();
-			console.log("home page");
 			homeView.render();
 		});
 

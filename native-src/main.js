@@ -15,11 +15,7 @@ define([
 
     var check = function (tabId, changeInfo, tab){
         if(Checker.checkForValidUrl(tab.url, DEFAULT_CONFIG)){
-            var xhrClient = new XHRClient();
-            var result = [];
-            var url = "http://localhost:10000/manifest.json";
-            xhrClient.request(url, result);
-            console.log(result);
+
         }
     };
 
