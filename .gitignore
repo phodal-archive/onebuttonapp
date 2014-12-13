@@ -8,3 +8,4 @@
 *.iws
 out/
 .idea_modules/
+configure.json
