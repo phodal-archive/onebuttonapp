@@ -4,8 +4,13 @@ define([
 	'underscore',
 	'mustache',
 	'text!/native-src/templates/index.html',
-	'json!/configure.json'
-],function($, Backbone, _, Mustache, indexTemplate, CONFIG){
+	'json!/configure.json',
+	'js/Notify'
+],function($, Backbone, _, Mustache, indexTemplate, CONFIG, Notify){
+
+	function isBrowser() {
+		return typeof module !== "undefined" && module.exports;
+	}
 
 	var HomePageView = Backbone.View.extend ({
 		el: $('#content'),
@@ -23,6 +28,9 @@ define([
 
 		render:function() {
 			var result = this.getResponse();
+			if (isBrowser) {
+				Notify.setUp(result.totalResultsCount + '')
+			}
 			var rendered = Mustache.to_html(indexTemplate, result);
 			this.$el.html(rendered);
 		}
