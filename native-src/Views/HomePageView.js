@@ -8,15 +8,15 @@ define([
 	'js/Notify'
 ],function($, Backbone, _, Mustache, indexTemplate, CONFIG, Notify){
 
-	function isBrowser() {
+	function isChromeExtensions() {
 		return typeof module !== "undefined" && module.exports;
 	}
 
 	var HomePageView = Backbone.View.extend ({
 		el: $('#content'),
 
-		initialize: function() {
-
+		initialize: function(id) {
+			this.tabID = id;
 		},
 
 		getResponse: function () {
@@ -28,8 +28,9 @@ define([
 
 		render:function() {
 			var result = this.getResponse();
-			if (isBrowser) {
-				Notify.setUp(result.totalResultsCount + '')
+			console.log(result);
+			if (isChromeExtensions) {
+				Notify.setUp(result.totalResultsCount + '', this.tabID)
 			}
 			var rendered = Mustache.to_html(indexTemplate, result);
 			this.$el.html(rendered);

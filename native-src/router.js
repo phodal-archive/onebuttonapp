@@ -11,15 +11,17 @@ define([
 			'*actions': 'homePage'
 		}
 	});
-	var initialize = function() {
+	var initialize = function(id) {
 		var app_router = new AppRouter;
 
 		app_router.on('route:homePage', function() {
-			var homeView = new HomePageView();
+			var homeView = new HomePageView(id);
 			homeView.render();
 		});
 
-		Backbone.history.start();
+		if(!Backbone.History.started){
+			Backbone.history.start();
+		}
 	};
 	return {
 		initialize: initialize
