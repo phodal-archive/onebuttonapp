@@ -7,6 +7,7 @@ var factory = function(
 
 	_.extend(Checker.prototype, {
 		initialize: function() {
+			
 		},
 
 		checkForValidUrl: function(url, CONFIG) {

@@ -7,7 +7,6 @@ define([
     'js/xhr-client',
     'app'
 ], function(_, Checker, URI, Parser, $, XHRClient, App) {
-    App.initialize();
 
     var DEFAULT_CONFIG = {
         'url_pattern' : '(localhost)'
@@ -15,8 +14,9 @@ define([
 
     var check = function (tabId, changeInfo, tab){
         if(Checker.checkForValidUrl(tab.url, DEFAULT_CONFIG)){
-            chrome.browserAction.setBadgeBackgroundColor({color: '#c8112f'});
-            chrome.browserAction.setBadgeText({text: '99'});
+            App.initialize();
+        } else {
+            chrome.browserAction.setBadgeText({text: ''});
         }
     };
 
