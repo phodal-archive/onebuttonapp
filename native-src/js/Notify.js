@@ -11,7 +11,7 @@ var factory = function(
 
 		setUp: function(number, tabID) {
 			chrome.browserAction.setBadgeBackgroundColor({color: '#c8112f'});
-			chrome.browserAction.setBadgeText({text: number, tabId:this.tabID });
+			chrome.browserAction.setBadgeText({text: number, tabId: tabID });
 		}
 	});
 
