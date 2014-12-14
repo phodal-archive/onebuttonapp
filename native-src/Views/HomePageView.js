@@ -29,7 +29,7 @@ define([
 		render:function() {
 			var result = this.getResponse();
 			console.log(result);
-			if (isChromeExtensions) {
+			if (!isChromeExtensions) {
 				Notify.setUp(result.totalResultsCount + '', this.tabID)
 			}
 			var rendered = Mustache.to_html(indexTemplate, result);

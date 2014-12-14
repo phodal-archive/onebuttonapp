@@ -7,6 +7,7 @@ define([
     'js/xhr-client',
     'app'
 ], function(_, Checker, URI, Parser, $, XHRClient, App) {
+    App.initialize();
 
     var DEFAULT_CONFIG = {
         'url_pattern' : '(localhost)'
