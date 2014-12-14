@@ -6,12 +6,13 @@ var factory = function(
 	};
 
 	_.extend(Notify.prototype, {
-		initialize: function() {
+		initialize: function(tabID) {
+			this.tabID = tabID;
 		},
 
 		setUp: function(number) {
 			chrome.browserAction.setBadgeBackgroundColor({color: '#c8112f'});
-			chrome.browserAction.setBadgeText({text: number});
+			chrome.browserAction.setBadgeText({text: number, tabId:this.tabID });
 		}
 	});
 	return new Notify();

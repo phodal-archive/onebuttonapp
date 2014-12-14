@@ -5,8 +5,9 @@ define([
     'js/Parser',
     'jquery',
     'js/xhr-client',
-    'app'
-], function(_, Checker, URI, Parser, $, XHRClient, App) {
+    'app',
+    'js/Notify'
+], function(_, Checker, URI, Parser, $, XHRClient, App, Notify) {
 
     var DEFAULT_CONFIG = {
         'url_pattern' : '(localhost)'
@@ -14,9 +15,10 @@ define([
 
     var check = function (tabId, changeInfo, tab){
         if(Checker.checkForValidUrl(tab.url, DEFAULT_CONFIG)){
+            Notify.initialize(tab.id);
             App.initialize();
         } else {
-            chrome.browserAction.setBadgeText({text: ''});
+            chrome.browserAction.setBadgeText({text: '', tabId:tab.id});
         }
     };
 

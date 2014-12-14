@@ -5,9 +5,11 @@ define([
 	'router'
 ], function($, _, Backbone, Router){
 
-	return {
-		initialize: function(){
+	var initialize = function(){
 		Router.initialize();
-	}
+	};
+
+	return {
+		initialize: initialize
 	};
 });
