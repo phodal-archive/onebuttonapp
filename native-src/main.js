@@ -15,10 +15,10 @@ define([
 
     var check = function (tabId, changeInfo, tab){
         if(Checker.checkForValidUrl(tab.url, DEFAULT_CONFIG)){
+            chrome.browserAction.setBadgeBackgroundColor({color: '#c8112f'});
+            chrome.browserAction.setBadgeText({text: '99'});
         }
     };
 
     chrome.tabs.onUpdated.addListener(check);
-    chrome.browserAction.setBadgeBackgroundColor({color: '#c8112f'});
-    chrome.browserAction.setBadgeText({text: '99'});
 });

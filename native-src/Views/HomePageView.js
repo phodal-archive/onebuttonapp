@@ -23,7 +23,6 @@ define([
 
 		render:function() {
 			var result = this.getResponse();
-			var count = result.totalResultsCount
 			var rendered = Mustache.to_html(indexTemplate, result);
 			this.$el.html(rendered);
 		}
