@@ -8,6 +8,10 @@ define([
         'url_pattern' : '(localhost)'
     };
 
+    chrome.runtime.onConnect.addListener(function(port){
+        port.postMessage({greeting:"hello"});
+    });
+
     var check = function (tabId, changeInfo, tab){
         console.log(Checker.checkForValidUrl(tab.url, DEFAULT_CONFIG));
         if(Checker.checkForValidUrl(tab.url, DEFAULT_CONFIG)){
