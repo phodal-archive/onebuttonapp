@@ -3,10 +3,8 @@ define([
 	'backbone',
 	'underscore',
 	'mustache',
-	'text!/native-src/templates/index.html',
-	'json!/configure.json',
-	'js/Notify'
-],function($, Backbone, _, Mustache, indexTemplate, CONFIG, Notify){
+	'text!/native-src/templates/index.html'
+],function($, Backbone, _, Mustache, indexTemplate){
 
 	function isChromeExtensions() {
 		return typeof module !== "undefined" && module.exports;
@@ -19,20 +17,8 @@ define([
 			this.tabID = id;
 		},
 
-		getResponse: function () {
-			var xhr = new XMLHttpRequest();
-			xhr.open('GET', CONFIG["base_url"] + CONFIG["query"], false);
-			xhr.send(null);
-			return JSON.parse(xhr.responseText);
-		},
-
 		render:function() {
-			var result = this.getResponse();
-			console.log(result);
-			if (!isChromeExtensions) {
-				Notify.setUp(result.totalResultsCount + '', this.tabID)
-			}
-			var rendered = Mustache.to_html(indexTemplate, result);
+			var rendered = Mustache.to_html(indexTemplate, {welcome: "Hello, this is LBS Helper"});
 			this.$el.html(rendered);
 		}
 	});

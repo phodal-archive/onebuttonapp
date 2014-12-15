@@ -15,11 +15,14 @@ define([
 
     var check = function (tabId, changeInfo, tab){
         if(Checker.checkForValidUrl(tab.url, DEFAULT_CONFIG)){
+            console.log(Parser.parseWhere(tab.url));
             App.initialize(tab.id);
         } else {
             chrome.browserAction.setBadgeText({text: '', tabId:tab.id});
         }
     };
 
-    chrome.tabs.onUpdated.addListener(check);
+    if(typeof module !== "undefined" && module.exports){
+        chrome.tabs.onUpdated.addListener(check);
+    }
 });

@@ -1,0 +1,15 @@
+{{#tieredResults}}
+    {{#.}}
+        {{#results}}
+            <div id="listing">
+                LandSize: {{landSize.displayApp}}, Price: {{price.display}}
+                <img src="{{mainImage.server}}/300x300/{{mainImage.uri}}" />
+                <ul>
+                    <li>BathRooms: {{features.general.bathrooms}}</li>
+                    <li>BedrRooms: {{features.general.bedrooms}}</li>
+                    <li>ParkingSpaces: {{features.general.parkingspaces}}</li>
+                </ul>
+            </div>
+        {{/results}}
+    {{/.}}
+{{/tieredResults}}
