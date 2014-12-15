@@ -30,39 +30,39 @@ var factory = function(
 	XHRClient.prototype.initialize = function() {
 	};
 
-	XHRClient.prototype.request = function(url, config) {
+	XHRClient.prototype.request = function(url, options) {
 		var request = new XMLHttpRequest();
 
-		config = config || {};
-		_.defaults(config, {
+		options = options || {};
+		_.defaults(options, {
 			http_method: "GET",
 			responseType: "json",
 			headers: {},
-			success: {},
-			error: {},
+			success: function() {},
+			error: function() {},
 			data: {},
 			timeout: 0,
 			cacheDateHeader: false
 		});
 
 		if (!url || typeof url !== "string") {
-			config['error'](new Error("URL is an invalid type"));
+			options['error'](new Error("URL is an invalid type"));
 		}
-		if (config['http_method'] === HTTP_METHOD['GET']) {
+		if (options['http_method'] === HTTP_METHOD['GET']) {
 			url += hasParams(url) ? "&" : "?";
-			url += serialize(config['data']);
+			url += serialize(options['data']);
 		}
 
-		request.open(config['http_method'], url, true);
-		_.each(_.keys(config['headers']), function(key) {
-			request.setRequestHeader(key, config['headers'][key]);
+		request.open(options['http_method'], url, true);
+		_.each(_.keys(options['headers']), function(key) {
+			request.setRequestHeader(key, options['headers'][key]);
 		});
 
-		request.responseType = config['responseType'];
+		request.responseType = options['responseType'];
 
-		request.timeout = config['timeout'];
+		request.timeout = options['timeout'];
 		request.ontimeout = function() {
-			config['error'](new Error("The request timed out"));
+			options['error'](new Error("The request timed out"));
 		};
 
 		request.onreadystatechange = _.bind(function() {
@@ -77,21 +77,21 @@ var factory = function(
 					}
 
 					if( response ) {
-						config['success'] = response;
+						options['success'] = response;
 					} else {
-						config['error'] = error;
+						options['error'] = error;
 					}
 				} else {
 					var error = new Error("Request completed with a non-200 status code");
 					error.status = request.status;
 					error.statusText = request.statusText;
 
-					config['error'](error);
+					options['error'](error);
 				}
 			} else if (request.readyState === STATE.HEADERS_RECEIVED) {
 				var httpResponseHeaderDate = request.getResponseHeader("Date");
 
-				if (httpResponseHeaderDate && config.cacheDateHeader) {
+				if (httpResponseHeaderDate && options.cacheDateHeader) {
 					try {
 						var serverClientTimePairObject = {
 							"serverTime" : Date.parse(httpResponseHeaderDate),
@@ -103,17 +103,17 @@ var factory = function(
 		},this);
 
 		try {
-			if (config['http_method'] === HTTP_METHOD['GET'] || _.isEmpty(config['data'])) {
+			if (options['http_method'] === HTTP_METHOD['GET'] || _.isEmpty(options['data'])) {
 				request.send();
 			}
-			else if (config['http_method'] !== HTTP_METHOD['GET'] && config['headers']['Content-Type'] === 'application/x-www-form-urlencoded') {
-				request.send(serialize(config['data']));
+			else if (options['http_method'] !== HTTP_METHOD['GET'] && options['headers']['Content-Type'] === 'application/x-www-form-urlencoded') {
+				request.send(serialize(options['data']));
 			}
 			else {
-				request.send(JSON.stringify(config['data']));
+				request.send(JSON.stringify(options['data']));
 			}
 		} catch (e) {
-			config['error'](e);
+			options['error'](e);
 		}
 	};
 

@@ -1,9 +1,9 @@
 define([
     'lib/underscore',
     'js/Checker',
-    'URIjs/URI',
-    'js/Parser'
-], function(_, Checker, URI, Parser) {
+    'js/xhr-client',
+    'json!/configure.json'
+], function(_, Checker, XHRClient, CONFIG) {
     var DEFAULT_CONFIG = {
         'url_pattern' : '(localhost)'
     };
@@ -13,9 +13,13 @@ define([
     });
 
     var check = function (tabId, changeInfo, tab){
-        console.log(Checker.checkForValidUrl(tab.url, DEFAULT_CONFIG));
         if(Checker.checkForValidUrl(tab.url, DEFAULT_CONFIG)){
-            console.log(Parser.parseWhere(tab.url));
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', CONFIG["base_url"] + CONFIG["query"], false);
+            xhr.send();
+            var listingNumber = JSON.parse(xhr.responseText).totalResultsCount + '';
+
+            chrome.browserAction.setBadgeText({text: listingNumber , tabId:tab.id});
         } else {
             chrome.browserAction.setBadgeText({text: '', tabId:tab.id});
         }
