@@ -17,7 +17,5 @@ define([
         }
     };
 
-    if(typeof module !== "undefined" && module.exports){
-        chrome.tabs.onUpdated.addListener(check);
-    }
+    chrome.tabs.onUpdated.addListener(check);
 });
