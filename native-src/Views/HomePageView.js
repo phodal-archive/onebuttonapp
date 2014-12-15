@@ -6,10 +6,6 @@ define([
 	'text!/native-src/templates/index.html'
 ],function($, Backbone, _, Mustache, indexTemplate){
 
-	function isChromeExtensions() {
-		return typeof module !== "undefined" && module.exports;
-	}
-
 	var HomePageView = Backbone.View.extend ({
 		el: $('#content'),
 

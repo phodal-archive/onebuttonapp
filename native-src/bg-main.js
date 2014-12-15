@@ -9,7 +9,7 @@ define([
     };
 
     chrome.runtime.onConnect.addListener(function(port){
-        port.postMessage({greeting:"hello"});
+        port.postMessage({greeting:"hello", test: "test"});
     });
 
     var check = function (tabId, changeInfo, tab){
