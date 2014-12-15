@@ -77,9 +77,9 @@ var factory = function(
 					}
 
 					if( response ) {
-						options['success'] = response;
+						options['success'](response);
 					} else {
-						options['error'] = error;
+						options['error'](error);
 					}
 				} else {
 					var error = new Error("Request completed with a non-200 status code");
