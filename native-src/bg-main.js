@@ -2,8 +2,9 @@ define([
     'lib/underscore',
     'js/Checker',
     'js/xhr-helper',
-    'json!/configure.json'
-], function(_, Checker, XHRHelper, CONFIG) {
+    'json!/configure.json',
+    'js/Parser'
+], function(_, Checker, XHRHelper, CONFIG, Parser) {
     var DEFAULT_CONFIG = {
         'url_pattern' : '(immobiliare|localhost)'
     };
@@ -14,10 +15,13 @@ define([
             var xhrHelper = new XHRHelper();
             xhrHelper.request(CONFIG["base_url"] + JSON.stringify(CONFIG["query"]), function(result) {
                 var listingNumber = result.totalResultsCount + '';
+                var where = Parser.parseWhere(tab.url);
+
                 chrome.runtime.onConnect.addListener(function (port) {
                     port.postMessage({
                         type:"listingsInfo",
-                        totalResultsCount: listingNumber
+                        totalResultsCount: listingNumber,
+                        where: where
                     });
                 });
                 chrome.browserAction.setBadgeText({text: listingNumber, tabId:tab.id});

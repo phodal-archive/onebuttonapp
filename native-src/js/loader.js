@@ -1,10 +1,11 @@
 (function() {
 	"use strict";
-	var port = chrome.runtime.connect({name:"mycontentscript"});
+	var port = chrome.runtime.connect({name:"lbs"});
 	port.onMessage.addListener(function(message, sender){
 		if(message.type === "listingsInfo"){
-			if($('#first').length === 0){
-				$("html").append("<div id='lbs_header'> <div class='header'>We found those listing in Casa.it: " + message.totalResultsCount + "</div></div>");
+			if($('#lbs_header').length === 0){
+				$("html").append("<div id='lbs_header'>" +
+				" <div class='header'>We found " + message.totalResultsCount  + " listings in " + message.where + "</div></div>");
 			}
 		}
 	});

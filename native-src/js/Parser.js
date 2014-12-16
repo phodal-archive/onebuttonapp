@@ -12,7 +12,8 @@ var factory = function(
 		},
 		parseWhere: function(url) {
 			var uri = URI(url);
-			return uri.directory()
+			var where = uri.path().split('/');
+			return where[1]
 		}
 	});
 	return new Parser();
