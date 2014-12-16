@@ -19,15 +19,22 @@ define([
 			this.tabID = id;
 		},
 
-		getResponse: function () {
+		generateQuery: function (query, city) {
+			var re = new RegExp("REPLACE_CITY", 'g');
+			var result = query.replace(re, city);
+			return result;
+		},
+
+		getResponse: function (city) {
 			var xhr = new XMLHttpRequest();
-			xhr.open('GET', CONFIG["base_url"] + JSON.stringify(CONFIG["query"]), false);
+			xhr.open('GET', CONFIG["base_url"] + this.generateQuery(JSON.stringify(CONFIG["query"]), city), false);
 			xhr.send(null);
 			return JSON.parse(xhr.responseText);
 		},
 
 		render:function() {
-			var result = this.getResponse();
+			var result = this.getResponse("Roma");
+			console.log(result);
 			if (isChromeExtensions()) {
 				Notify.setUp(result.totalResultsCount + '', this.tabID);
 			}

@@ -13,9 +13,10 @@ define([
 
         if(Checker.checkForValidUrl(tab.url, DEFAULT_CONFIG)){
             var xhrHelper = new XHRHelper();
-            xhrHelper.request(CONFIG["base_url"] + JSON.stringify(CONFIG["query"]), function(result) {
+            var where = Parser.parseWhere(tab.url);
+
+            xhrHelper.request(CONFIG["base_url"] + xhrHelper.generateQuery(JSON.stringify(CONFIG["query"]), where), function(result) {
                 var listingNumber = result.totalResultsCount + '';
-                var where = Parser.parseWhere(tab.url);
 
                 chrome.runtime.onConnect.addListener(function (port) {
                     port.postMessage({

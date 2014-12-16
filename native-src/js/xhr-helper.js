@@ -9,6 +9,12 @@ var factory = function(
 	XHRHelper.prototype.initialize = function() {
 	};
 
+	XHRHelper.prototype.generateQuery = function (query, city) {
+		var re = new RegExp("REPLACE_CITY", 'g');
+		var result = query.replace(re, city);
+		return result;
+	};
+
 	XHRHelper.prototype.request = function(url, callback) {
 		var xhrClient = new XHRClient();
 		var options = {};
