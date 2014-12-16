@@ -19,7 +19,7 @@
   ],
   "content_scripts": [ {
     "js": ["native-src/lib/jquery.min.js", "native-src/js/loader.js" ],
-    "matches": [ "http://*/*", "https://*/*" ],
+    "matches": [ "http://*.immobiliare.it/*", "https://*.immobiliare.it/*" ],
     "run_at": "document_start"
   } ],
   "browser_action": {

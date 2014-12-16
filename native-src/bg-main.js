@@ -5,12 +5,8 @@ define([
     'json!/configure.json'
 ], function(_, Checker, XHRHelper, CONFIG) {
     var DEFAULT_CONFIG = {
-        'url_pattern' : '(localhost)'
+        'url_pattern' : '(immobiliare)'
     };
-
-    chrome.runtime.onConnect.addListener(function(port){
-        port.postMessage({greeting:"hello", test: "test"});
-    });
 
     var check = function (tabId, changeInfo, tab){
 
@@ -18,6 +14,9 @@ define([
             var xhrHelper = new XHRHelper();
             xhrHelper.request(CONFIG["base_url"] + CONFIG["query"], function(result){
                 var listingNumber = result.totalResultsCount + '';
+                chrome.runtime.onConnect.addListener(function(port){
+                    port.postMessage({type:"listingsInfo", listingNumber: listingNumber});
+                });
                 chrome.browserAction.setBadgeText({text: listingNumber, tabId:tab.id});
             });
         } else {
