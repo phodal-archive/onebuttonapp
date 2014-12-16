@@ -12,7 +12,7 @@ define([
 
         if(Checker.checkForValidUrl(tab.url, DEFAULT_CONFIG)){
             var xhrHelper = new XHRHelper();
-            xhrHelper.request(CONFIG["base_url"] + CONFIG["query"], function(result) {
+            xhrHelper.request(CONFIG["base_url"] + JSON.stringify(CONFIG["query"]), function(result) {
                 var listingNumber = result.totalResultsCount + '';
                 chrome.runtime.onConnect.addListener(function (port) {
                     port.postMessage({

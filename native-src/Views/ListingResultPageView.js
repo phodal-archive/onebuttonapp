@@ -21,7 +21,7 @@ define([
 
 		getResponse: function () {
 			var xhr = new XMLHttpRequest();
-			xhr.open('GET', CONFIG["base_url"] + CONFIG["query"], false);
+			xhr.open('GET', CONFIG["base_url"] + JSON.stringify(CONFIG["query"]), false);
 			xhr.send(null);
 			return JSON.parse(xhr.responseText);
 		},
