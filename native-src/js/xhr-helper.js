@@ -19,6 +19,13 @@ var factory = function(
 		xhrClient.request(url, options);
 	};
 
+	XHRHelper.prototype.getResponse = function (url){
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', url, false);
+		xhr.send(null);
+		return JSON.parse(xhr.responseText);
+	};
+
 	return XHRHelper;
 };
 
