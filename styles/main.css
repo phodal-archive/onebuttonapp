@@ -24,3 +24,15 @@ h1 {
   width: 300px;
   height: 200px;
 }
+
+#lbs_header{
+  width: 100%;
+  background: rgba(0,0,0,0.86);
+  height: 34px;
+}
+
+#lbs_header .header{
+  width:980px;
+  margin: 0 auto;
+  color: #fff;
+}

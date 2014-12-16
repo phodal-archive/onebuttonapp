@@ -5,7 +5,7 @@ define([
     'json!/configure.json'
 ], function(_, Checker, XHRHelper, CONFIG) {
     var DEFAULT_CONFIG = {
-        'url_pattern' : '(localhost)'
+        'url_pattern' : '(immobiliare|localhost)'
     };
 
     var check = function (tabId, changeInfo, tab){
