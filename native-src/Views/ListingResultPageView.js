@@ -34,7 +34,6 @@ define([
 
 		render:function() {
 			var result = this.getResponse("Roma");
-			console.log(result);
 			if (isChromeExtensions()) {
 				Notify.setUp(result.totalResultsCount + '', this.tabID);
 			}
